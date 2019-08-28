@@ -24,21 +24,24 @@ public class ValidatingServiceWithGroups {
 	@Autowired
 	private EntityManager entityManager;
 	
-    @Validated(OnCreate.class)
-    @Transactional
+    //@Validated /* set this if there is common validation*/
+    @Validated(OnCreate.class) /* set this if there is validation is to be performed on group*/
+    //@Transactional /*This is required if entity manager is used else we will get error*/
     public void validateForCreate(@Valid InputWithCustomValidator input){
 		
-	      repository.save(input);
-	      entityManager.flush();
-		
+	      /*repository.save(input);
+	      entityManager.flush();*/
+		/*No need to do anything here if we just want to validate and forward the request to appropriate service.*/
     }
 
-    @Validated(OnUpdate.class)
-    @Transactional
+    //@Validated /* set this if there is common validation*/
+    @Validated(OnUpdate.class)  /* set this if there is validation is to be performed on group*/
+    //@Transactional /*This is required if entity manager is used else we will get error*/
    public void validateForUpdate(@Valid InputWithCustomValidator input){
         // do something
-	      repository.save(input);
-	      entityManager.flush();    	
+	      /*repository.save(input);
+	      entityManager.flush();*/    	
+    	/*No need to do anything here if we just want to validate and forward the request to appropriate service.*/
     }
 
     public Optional<InputWithCustomValidator> getData(long id) {

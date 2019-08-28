@@ -21,12 +21,15 @@ public class InputWithCustomValidator {
   @Null(groups = OnCreate.class)
   private Long id;
 
-  @Min(groups={OnCreate.class,OnUpdate.class},value=1)
-  @Max(groups={OnUpdate.class},value=10)
+  @Min(groups={OnCreate.class,OnUpdate.class},value=1)/*This will not work in case of common validation if no group is mentioned in @Validate annotation on calling method. In this case calling method is validateForCreate*/
+  @Max(groups={OnUpdate.class},value=10)/*This will not work in case of common validation if no group is mentioned in @Validate annotation on calling method. In this case calling method is validateForCreate*/
+  //@Min(value=1)/* do not add groups if common validation for all groups is required. Also calling method should not contain group in @Validate annotation. In this case calling method is validateForCreate*/
+  //@Max(value=10)/* do not add groups if common validation for all groups is required. Also calling method should not contain group in @Validate annotation. In this case calling method is validateForCreate*/  
   @Column
   private int numberBetweenOneAndTen;
 
-  @IpAddress(groups={OnCreate.class,OnUpdate.class})
+  @IpAddress(groups={OnUpdate.class}) //will work only on OnUpdate group
+  //@IpAddress /* do not add groups if common validation for all groups is required. Also calling method should not contain group in @Validate annotation. In this case calling method is validateForCreate*/
   @Column
   private String ipAddress;
 
