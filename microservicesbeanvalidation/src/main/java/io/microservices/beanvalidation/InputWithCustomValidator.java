@@ -21,12 +21,12 @@ public class InputWithCustomValidator {
   @Null(groups = OnCreate.class)
   private Long id;
 
-  @Min(1)
-  @Max(10)
+  @Min(groups={OnCreate.class,OnUpdate.class},value=1)
+  @Max(groups={OnUpdate.class},value=10)
   @Column
   private int numberBetweenOneAndTen;
 
-  @IpAddress
+  @IpAddress(groups={OnCreate.class,OnUpdate.class})
   @Column
   private String ipAddress;
 

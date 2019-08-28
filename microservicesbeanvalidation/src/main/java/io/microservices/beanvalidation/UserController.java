@@ -23,7 +23,8 @@ public class UserController {
         return ResponseEntity.ok("User is valid");
     }
     
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+  /*Errors handled in ErrorHandlingControllerAdvice. Single point error handler for all controllers*/  
+/*  @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationExceptions(
       MethodArgumentNotValidException ex) {
@@ -34,5 +35,5 @@ public class UserController {
             errors.put(fieldName, errorMessage);
         });
         return errors;
-    }    
+    }  */  
 }
