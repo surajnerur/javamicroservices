@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.microservices.beanvalidation.InputWithCustomValidator;
+import io.microservices.beanvalidation.InputWithCustomValidatorData;
 import io.microservices.beanvalidation.service.ValidatingServiceWithGroups;
 
 @RestController
@@ -29,6 +30,19 @@ public class ValidateRequestBodyCustomValidatorController {
 		}*/
 		//return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	}
+  	
+  	@PostMapping("/validateBodyCustomValidatorData")
+	public ResponseEntity<String> validateDataBody(@RequestBody InputWithCustomValidatorData input) {
+		/*try {*/
+			validatingServiceWithGroups.validateForCreateData(input);
+	      /*repository.save(input);
+	      entityManager.flush();*/
+	      return ResponseEntity.ok("valid");
+		/*}catch(Exception e){
+			e.printStackTrace();
+		}*/
+		//return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+	}  	
   	
   	@PostMapping("/validateBodyCustomValidatorUpdate")
 	public ResponseEntity<String> validateBodyUpdate(@RequestBody InputWithCustomValidator input) {

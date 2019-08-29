@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import io.microservices.beanvalidation.InputWithCustomValidator;
+import io.microservices.beanvalidation.InputWithCustomValidatorData;
 import io.microservices.beanvalidation.repository.ValidatingRepositoryWithCustomValidator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,16 @@ public class ValidatingServiceWithGroups {
 		/*No need to do anything here if we just want to validate and forward the request to appropriate service.*/
     }
 
+    //@Validated /* set this if there is common validation*/
+    @Validated(OnCreate.class) /* set this if there is validation is to be performed on group*/
+    //@Transactional /*This is required if entity manager is used else we will get error*/
+    public void validateForCreateData(@Valid InputWithCustomValidatorData input){
+		
+	      /*repository.save(input);
+	      entityManager.flush();*/
+		/*No need to do anything here if we just want to validate and forward the request to appropriate service.*/
+    }
+    
     //@Validated /* set this if there is common validation*/
     @Validated(OnUpdate.class)  /* set this if there is validation is to be performed on group*/
     //@Transactional /*This is required if entity manager is used else we will get error*/
