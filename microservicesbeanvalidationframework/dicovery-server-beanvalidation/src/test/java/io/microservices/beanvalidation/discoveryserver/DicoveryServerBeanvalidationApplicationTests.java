@@ -1,4 +1,4 @@
-package io.microservices.beanvalidation;
+package io.microservices.beanvalidation.discoveryserver;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
