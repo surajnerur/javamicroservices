@@ -32,9 +32,12 @@ public class ValidateRequestBodyCustomValidatorController {
 	}
   	
   	@PostMapping("/validateBodyCustomValidatorData")
-	public ResponseEntity<String> validateDataBody(@RequestBody InputWithCustomValidatorData input) {
+	public ResponseEntity<String> validateDataBody(@RequestBody InputWithCustomValidatorData input) throws Exception {
 		/*try {*/
 			validatingServiceWithGroups.validateForCreateData(input);
+			if(input.getInputd().getNumid().equalsIgnoreCase("s")) {
+				throw new Exception("num");
+			}
 	      /*repository.save(input);
 	      entityManager.flush();*/
 	      return ResponseEntity.ok("valid");
